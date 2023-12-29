@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Market{% endblock %}
+
+{% block body %}
+    <h1>Put Player on Market</h1>
+
+    <p>Player: {{ player.name }} {{ player.surname }}</p>
+
+    <form method="post" action="{{ path('put_on_market', {'id': player.id}) }}">
+        <label for="market_price">Market Price:</label>
+        <input type="number" id="market_price" name="market_price" step="0.01" required>
+
+        <button type="submit" class="btn btn-primary">Put on Market</button>
+    </form>
+{% endblock %}

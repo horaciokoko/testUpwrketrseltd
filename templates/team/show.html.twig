@@ -1,0 +1,61 @@
+
+{# templates/team/show.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Team Details{% endblock %}
+
+{% block body %}
+    
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Players</h3>
+            {% if players|length == 0 %}
+                <p>No players in this team</p>
+            {% else %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Surname</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for player in players %}
+                            <tr>
+                                <td>{{ player.name }}</td>
+                                <td>{{ player.surname }}</td>
+                                <td>{% if player.isOnMarket %}On Market{% else %}<a href="{{ path('put_on_market', {'id': player.id}) }}">Sell</a>{% endif %}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+
+        </div>
+
+        <div class="col-md-4">
+            <h3>New Player</h3>
+            {{form_errors(playerForm)}}
+            {{ form_start(playerForm) }}
+            {{ form_widget(playerForm) }}
+            <button type="submit" class="btn btn-primary">Create Player</button>
+            {{ form_end(playerForm) }}
+        </div>
+        <div class="col-md-4">
+            <h3>Transfer Player</h3>
+            {{ form_errors(transferForm) }}
+            {{ form_start(transferForm) }}
+            {{ form_widget(transferForm) }}
+            <button type="submit" class="btn btn-primary">Transfer Player</button>
+            {{ form_end(transferForm) }}
+        </div>
+    </div>
+    <div class="row">
+        <h1>{{ team.name }} Details</h1>
+        <a href="{{ path('app_team_index') }}">back to list</a>
+        <a href="{{ path('app_team_edit', {'id': team.id}) }}">edit</a>
+        {{ include('team/_delete_form.html.twig') }}
+    </div>
+{% endblock %}
+

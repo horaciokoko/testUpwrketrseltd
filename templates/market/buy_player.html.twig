@@ -1,0 +1,12 @@
+{# templates/player/buy_player.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Buy Player</h1>
+
+    <form method="post">
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-primary">Buy Player</button>
+    </form>
+{% endblock %}

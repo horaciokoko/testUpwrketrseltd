@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Market{% endblock %}
+
+{% block body %}
+    <h1>Market</h1>
+
+    <!-- generate div boostrap grid -->
+    <div>
+        <div class="row">
+            <h2>Players on sale</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Team</th>
+                        <th>Sell price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if players is empty %}
+                        <tr>
+                            <td colspan="5">Aucun joueur à vendre</td>
+                        </tr>
+                    {% else %}
+                        {% for player in players %}
+                            <tr>
+                                <td>{{ player.name }}</td>
+                                <td>{{ player.surname }}</td>
+                                <td>{{ player.team.name }}</td>
+                                <td>{{ player.marketPrice }}</td>
+                                <td>
+                                    <a href="{{ path('buy_player', {'id': player.id}) }}" class="btn btn-primary">Buy</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+            <div class="col-md-12 mb-12)">{{ knp_pagination_render(players) }}</div>
+        </div>
+        <div class="row">
+            <h2>Liste des Transactions</h2>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Joueur</th>
+                        <th>Équipe Vendeuse</th>
+                        <th>Équipe Acheteuse</th>
+                        <th>Montant</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if transactions is empty %}
+                        <tr>
+                            <td colspan="5">Aucune transaction</td>
+                        </tr>
+                    {% else %}
+                        {% for transaction in transactions %}
+                            <tr>
+                                <td>{{ transaction.id }}</td>
+                                <td>{{ transaction.player.name }} {{ transaction.player.surname }}</td>
+                                <td>{{ transaction.sellerTeam.name }}</td>
+                                <td>{{ transaction.buyerTeam.name }}</td>
+                                <td>{{ transaction.amount }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+            <div class="col-md-12 mb-12)">{{ knp_pagination_render(transactions) }}</div>
+        </div
+    </div>
+{% endblock %}
+
