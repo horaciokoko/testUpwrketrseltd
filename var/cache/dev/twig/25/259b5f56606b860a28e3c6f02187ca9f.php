@@ -40,7 +40,7 @@ class __TwigTemplate_5ff1c8b73638e8e86e52f18051d10c28 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "team/_delete_form.html.twig"));
 
         // line 1
-        echo "<form method=\"post\" action=\"";
+        echo "<form method=\"post\" class=\"form-delete\" action=\"";
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_team_delete", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["team"]) || array_key_exists("team", $context) ? $context["team"] : (function () { throw new RuntimeError('Variable "team" does not exist.', 1, $this->source); })()), "id", [], "any", false, false, false, 1)]), "html", null, true);
         echo "\" onsubmit=\"return confirm('Are you sure you want to delete this item?');\">
     <input type=\"hidden\" name=\"_token\" value=\"";
@@ -84,7 +84,7 @@ class __TwigTemplate_5ff1c8b73638e8e86e52f18051d10c28 extends Template
 
     public function getSourceContext()
     {
-        return new Source("<form method=\"post\" action=\"{{ path('app_team_delete', {'id': team.id}) }}\" onsubmit=\"return confirm('Are you sure you want to delete this item?');\">
+        return new Source("<form method=\"post\" class=\"form-delete\" action=\"{{ path('app_team_delete', {'id': team.id}) }}\" onsubmit=\"return confirm('Are you sure you want to delete this item?');\">
     <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('delete' ~ team.id) }}\">
     <button class=\"btn\">Delete</button>
 </form>

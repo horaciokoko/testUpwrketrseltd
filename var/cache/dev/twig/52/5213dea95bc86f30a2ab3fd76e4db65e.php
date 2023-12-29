@@ -94,50 +94,49 @@ class __TwigTemplate_f4e626166bc771a5c881744928c78701 extends Template
             <table class=\"table\">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Surname</th>
-                        <th>Team</th>
+                        <th>Player</th>
+                        <th>Seller</th>
                         <th>Sell price</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     ";
-        // line 23
-        if (twig_test_empty((isset($context["players"]) || array_key_exists("players", $context) ? $context["players"] : (function () { throw new RuntimeError('Variable "players" does not exist.', 23, $this->source); })()))) {
-            // line 24
+        // line 22
+        if (twig_test_empty((isset($context["players"]) || array_key_exists("players", $context) ? $context["players"] : (function () { throw new RuntimeError('Variable "players" does not exist.', 22, $this->source); })()))) {
+            // line 23
             echo "                        <tr>
                             <td colspan=\"5\">Aucun joueur à vendre</td>
                         </tr>
                     ";
         } else {
-            // line 28
+            // line 27
             echo "                        ";
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["players"]) || array_key_exists("players", $context) ? $context["players"] : (function () { throw new RuntimeError('Variable "players" does not exist.', 28, $this->source); })()));
+            $context['_seq'] = twig_ensure_traversable((isset($context["players"]) || array_key_exists("players", $context) ? $context["players"] : (function () { throw new RuntimeError('Variable "players" does not exist.', 27, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["player"]) {
-                // line 29
+                // line 28
                 echo "                            <tr>
                                 <td>";
-                // line 30
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["player"], "name", [], "any", false, false, false, 30), "html", null, true);
+                // line 29
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["player"], "name", [], "any", false, false, false, 29), "html", null, true);
+                echo " ";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["player"], "surname", [], "any", false, false, false, 29), "html", null, true);
                 echo "</td>
+                                <td><a href=\"";
+                // line 30
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("team_show", ["id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["player"], "team", [], "any", false, false, false, 30), "id", [], "any", false, false, false, 30)]), "html", null, true);
+                echo "\" >";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["player"], "team", [], "any", false, false, false, 30), "name", [], "any", false, false, false, 30), "html", null, true);
+                echo "</a></td>
                                 <td>";
                 // line 31
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["player"], "surname", [], "any", false, false, false, 31), "html", null, true);
-                echo "</td>
-                                <td>";
-                // line 32
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["player"], "team", [], "any", false, false, false, 32), "name", [], "any", false, false, false, 32), "html", null, true);
-                echo "</td>
-                                <td>";
-                // line 33
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["player"], "marketPrice", [], "any", false, false, false, 33), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["player"], "marketPrice", [], "any", false, false, false, 31), "html", null, true);
                 echo "</td>
                                 <td>
                                     <a href=\"";
-                // line 35
-                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("buy_player", ["id" => twig_get_attribute($this->env, $this->source, $context["player"], "id", [], "any", false, false, false, 35)]), "html", null, true);
+                // line 33
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("buy_player", ["id" => twig_get_attribute($this->env, $this->source, $context["player"], "id", [], "any", false, false, false, 33)]), "html", null, true);
                 echo "\" class=\"btn btn-primary\">Buy</a>
                                 </td>
                             </tr>
@@ -146,68 +145,72 @@ class __TwigTemplate_f4e626166bc771a5c881744928c78701 extends Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['player'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 39
+            // line 37
             echo "                    ";
         }
-        // line 40
+        // line 38
         echo "                </tbody>
             </table>
             <div class=\"col-md-12 mb-12)\">";
-        // line 42
-        echo $this->env->getRuntime('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationRuntime')->render($this->env, (isset($context["players"]) || array_key_exists("players", $context) ? $context["players"] : (function () { throw new RuntimeError('Variable "players" does not exist.', 42, $this->source); })()));
+        // line 40
+        echo $this->env->getRuntime('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationRuntime')->render($this->env, (isset($context["players"]) || array_key_exists("players", $context) ? $context["players"] : (function () { throw new RuntimeError('Variable "players" does not exist.', 40, $this->source); })()));
         echo "</div>
         </div>
         <div class=\"row\">
-            <h2>Liste des Transactions</h2>
+            <h2>Transaction list</h2>
 
             <table class=\"table\">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Joueur</th>
-                        <th>Équipe Vendeuse</th>
-                        <th>Équipe Acheteuse</th>
-                        <th>Montant</th>
+                        <th>Player</th>
+                        <th>Selling team</th>
+                        <th>Buying team</th>
+                        <th>Amount</th>
                     </tr>
                 </thead>
                 <tbody>
                     ";
-        // line 58
-        if (twig_test_empty((isset($context["transactions"]) || array_key_exists("transactions", $context) ? $context["transactions"] : (function () { throw new RuntimeError('Variable "transactions" does not exist.', 58, $this->source); })()))) {
-            // line 59
+        // line 56
+        if (twig_test_empty((isset($context["transactions"]) || array_key_exists("transactions", $context) ? $context["transactions"] : (function () { throw new RuntimeError('Variable "transactions" does not exist.', 56, $this->source); })()))) {
+            // line 57
             echo "                        <tr>
                             <td colspan=\"5\">Aucune transaction</td>
                         </tr>
                     ";
         } else {
-            // line 63
+            // line 61
             echo "                        ";
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["transactions"]) || array_key_exists("transactions", $context) ? $context["transactions"] : (function () { throw new RuntimeError('Variable "transactions" does not exist.', 63, $this->source); })()));
+            $context['_seq'] = twig_ensure_traversable((isset($context["transactions"]) || array_key_exists("transactions", $context) ? $context["transactions"] : (function () { throw new RuntimeError('Variable "transactions" does not exist.', 61, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["transaction"]) {
-                // line 64
+                // line 62
                 echo "                            <tr>
                                 <td>";
-                // line 65
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["transaction"], "id", [], "any", false, false, false, 65), "html", null, true);
+                // line 63
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["transaction"], "id", [], "any", false, false, false, 63), "html", null, true);
                 echo "</td>
                                 <td>";
-                // line 66
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["transaction"], "player", [], "any", false, false, false, 66), "name", [], "any", false, false, false, 66), "html", null, true);
+                // line 64
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["transaction"], "player", [], "any", false, false, false, 64), "name", [], "any", false, false, false, 64), "html", null, true);
                 echo " ";
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["transaction"], "player", [], "any", false, false, false, 66), "surname", [], "any", false, false, false, 66), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["transaction"], "player", [], "any", false, false, false, 64), "surname", [], "any", false, false, false, 64), "html", null, true);
                 echo "</td>
+                                <td><a href=\"";
+                // line 65
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("team_show", ["id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["transaction"], "sellerTeam", [], "any", false, false, false, 65), "id", [], "any", false, false, false, 65)]), "html", null, true);
+                echo "\" >";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["transaction"], "sellerTeam", [], "any", false, false, false, 65), "name", [], "any", false, false, false, 65), "html", null, true);
+                echo "</a></td>
+                                <td><a href=\"";
+                // line 66
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("team_show", ["id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["transaction"], "buyerTeam", [], "any", false, false, false, 66), "id", [], "any", false, false, false, 66)]), "html", null, true);
+                echo "\" >";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["transaction"], "buyerTeam", [], "any", false, false, false, 66), "name", [], "any", false, false, false, 66), "html", null, true);
+                echo "</a></td>
                                 <td>";
                 // line 67
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["transaction"], "sellerTeam", [], "any", false, false, false, 67), "name", [], "any", false, false, false, 67), "html", null, true);
-                echo "</td>
-                                <td>";
-                // line 68
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["transaction"], "buyerTeam", [], "any", false, false, false, 68), "name", [], "any", false, false, false, 68), "html", null, true);
-                echo "</td>
-                                <td>";
-                // line 69
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["transaction"], "amount", [], "any", false, false, false, 69), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["transaction"], "amount", [], "any", false, false, false, 67), "html", null, true);
                 echo "</td>
                             </tr>
                         ";
@@ -215,15 +218,15 @@ class __TwigTemplate_f4e626166bc771a5c881744928c78701 extends Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['transaction'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 72
+            // line 70
             echo "                    ";
         }
-        // line 73
+        // line 71
         echo "                </tbody>
             </table>
             <div class=\"col-md-12 mb-12)\">";
-        // line 75
-        echo $this->env->getRuntime('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationRuntime')->render($this->env, (isset($context["transactions"]) || array_key_exists("transactions", $context) ? $context["transactions"] : (function () { throw new RuntimeError('Variable "transactions" does not exist.', 75, $this->source); })()));
+        // line 73
+        echo $this->env->getRuntime('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationRuntime')->render($this->env, (isset($context["transactions"]) || array_key_exists("transactions", $context) ? $context["transactions"] : (function () { throw new RuntimeError('Variable "transactions" does not exist.', 73, $this->source); })()));
         echo "</div>
         </div
     </div>
@@ -257,7 +260,7 @@ class __TwigTemplate_f4e626166bc771a5c881744928c78701 extends Template
      */
     public function getDebugInfo()
     {
-        return array (  226 => 75,  222 => 73,  219 => 72,  210 => 69,  206 => 68,  202 => 67,  196 => 66,  192 => 65,  189 => 64,  184 => 63,  178 => 59,  176 => 58,  157 => 42,  153 => 40,  150 => 39,  140 => 35,  135 => 33,  131 => 32,  127 => 31,  123 => 30,  120 => 29,  115 => 28,  109 => 24,  107 => 23,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  229 => 73,  225 => 71,  222 => 70,  213 => 67,  207 => 66,  201 => 65,  195 => 64,  191 => 63,  188 => 62,  183 => 61,  177 => 57,  175 => 56,  156 => 40,  152 => 38,  149 => 37,  139 => 33,  134 => 31,  128 => 30,  122 => 29,  119 => 28,  114 => 27,  108 => 23,  106 => 22,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -276,9 +279,8 @@ class __TwigTemplate_f4e626166bc771a5c881744928c78701 extends Template
             <table class=\"table\">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Surname</th>
-                        <th>Team</th>
+                        <th>Player</th>
+                        <th>Seller</th>
                         <th>Sell price</th>
                         <th>Action</th>
                     </tr>
@@ -291,9 +293,8 @@ class __TwigTemplate_f4e626166bc771a5c881744928c78701 extends Template
                     {% else %}
                         {% for player in players %}
                             <tr>
-                                <td>{{ player.name }}</td>
-                                <td>{{ player.surname }}</td>
-                                <td>{{ player.team.name }}</td>
+                                <td>{{ player.name }} {{ player.surname }}</td>
+                                <td><a href=\"{{ path('team_show', {'id': player.team.id}) }}\" >{{ player.team.name }}</a></td>
                                 <td>{{ player.marketPrice }}</td>
                                 <td>
                                     <a href=\"{{ path('buy_player', {'id': player.id}) }}\" class=\"btn btn-primary\">Buy</a>
@@ -306,16 +307,16 @@ class __TwigTemplate_f4e626166bc771a5c881744928c78701 extends Template
             <div class=\"col-md-12 mb-12)\">{{ knp_pagination_render(players) }}</div>
         </div>
         <div class=\"row\">
-            <h2>Liste des Transactions</h2>
+            <h2>Transaction list</h2>
 
             <table class=\"table\">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Joueur</th>
-                        <th>Équipe Vendeuse</th>
-                        <th>Équipe Acheteuse</th>
-                        <th>Montant</th>
+                        <th>Player</th>
+                        <th>Selling team</th>
+                        <th>Buying team</th>
+                        <th>Amount</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -328,8 +329,8 @@ class __TwigTemplate_f4e626166bc771a5c881744928c78701 extends Template
                             <tr>
                                 <td>{{ transaction.id }}</td>
                                 <td>{{ transaction.player.name }} {{ transaction.player.surname }}</td>
-                                <td>{{ transaction.sellerTeam.name }}</td>
-                                <td>{{ transaction.buyerTeam.name }}</td>
+                                <td><a href=\"{{ path('team_show', {'id': transaction.sellerTeam.id}) }}\" >{{ transaction.sellerTeam.name }}</a></td>
+                                <td><a href=\"{{ path('team_show', {'id': transaction.buyerTeam.id}) }}\" >{{ transaction.buyerTeam.name }}</a></td>
                                 <td>{{ transaction.amount }}</td>
                             </tr>
                         {% endfor %}

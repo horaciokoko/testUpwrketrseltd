@@ -85,125 +85,167 @@ class __TwigTemplate_68aa5308bd4b534d8b1b1e0d50fc01ae extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 9
-        echo "    
+        echo "    <h1>";
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["team"]) || array_key_exists("team", $context) ? $context["team"] : (function () { throw new RuntimeError('Variable "team" does not exist.', 9, $this->source); })()), "name", [], "any", false, false, false, 9), "html", null, true);
+        echo "</h1>
+    <div class=\"row\">
+        <div class=\"col-md-9 d-flex\">
+            <div class=\"btn-container\"><a class=\"btn\" href=\"";
+        // line 12
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_team_index");
+        echo "\">back to list</a></div>
+            <div class=\"btn-container\">
+                <a class=\"btn\" href=\"";
+        // line 14
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_team_edit", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["team"]) || array_key_exists("team", $context) ? $context["team"] : (function () { throw new RuntimeError('Variable "team" does not exist.', 14, $this->source); })()), "id", [], "any", false, false, false, 14)]), "html", null, true);
+        echo "\">edit</a>
+            </div>
+            <div class=\"btn-container\">
+                ";
+        // line 17
+        echo twig_include($this->env, $context, "team/_delete_form.html.twig");
+        echo "
+            </div>
+        </div>
+        <div class=\"col-md-3\">
+            Balance: ";
+        // line 21
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["team"]) || array_key_exists("team", $context) ? $context["team"] : (function () { throw new RuntimeError('Variable "team" does not exist.', 21, $this->source); })()), "moneyBalance", [], "any", false, false, false, 21), "html", null, true);
+        echo "
+        </div>
+        
+    </div>
     <div class=\"row\">
         <div class=\"col-md-4\">
             <h3>Players</h3>
             ";
-        // line 13
-        if ((twig_length_filter($this->env, (isset($context["players"]) || array_key_exists("players", $context) ? $context["players"] : (function () { throw new RuntimeError('Variable "players" does not exist.', 13, $this->source); })())) == 0)) {
-            // line 14
+        // line 28
+        if ((twig_length_filter($this->env, (isset($context["players"]) || array_key_exists("players", $context) ? $context["players"] : (function () { throw new RuntimeError('Variable "players" does not exist.', 28, $this->source); })())) == 0)) {
+            // line 29
             echo "                <p>No players in this team</p>
             ";
         } else {
-            // line 16
+            // line 31
             echo "                <table class=\"table\">
                     <thead>
                         <tr>
                             <th>Name</th>
                             <th>Surname</th>
+                            <th colspan=\"2\">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         ";
-            // line 24
+            // line 40
             $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable((isset($context["players"]) || array_key_exists("players", $context) ? $context["players"] : (function () { throw new RuntimeError('Variable "players" does not exist.', 24, $this->source); })()));
+            $context['_seq'] = twig_ensure_traversable((isset($context["players"]) || array_key_exists("players", $context) ? $context["players"] : (function () { throw new RuntimeError('Variable "players" does not exist.', 40, $this->source); })()));
+            $context['loop'] = [
+              'parent' => $context['_parent'],
+              'index0' => 0,
+              'index'  => 1,
+              'first'  => true,
+            ];
+            if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof \Countable)) {
+                $length = count($context['_seq']);
+                $context['loop']['revindex0'] = $length - 1;
+                $context['loop']['revindex'] = $length;
+                $context['loop']['length'] = $length;
+                $context['loop']['last'] = 1 === $length;
+            }
             foreach ($context['_seq'] as $context["_key"] => $context["player"]) {
-                // line 25
+                // line 41
                 echo "                            <tr>
                                 <td>";
-                // line 26
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["player"], "name", [], "any", false, false, false, 26), "html", null, true);
+                // line 42
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["player"], "name", [], "any", false, false, false, 42), "html", null, true);
                 echo "</td>
                                 <td>";
-                // line 27
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["player"], "surname", [], "any", false, false, false, 27), "html", null, true);
+                // line 43
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["player"], "surname", [], "any", false, false, false, 43), "html", null, true);
                 echo "</td>
                                 <td>";
-                // line 28
-                if (twig_get_attribute($this->env, $this->source, $context["player"], "isOnMarket", [], "any", false, false, false, 28)) {
-                    echo "On Market";
+                // line 44
+                if (twig_get_attribute($this->env, $this->source, $context["player"], "isOnMarket", [], "any", false, false, false, 44)) {
+                    echo "<a href=\"";
+                    echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("retire_from_market", ["id" => twig_get_attribute($this->env, $this->source, $context["player"], "id", [], "any", false, false, false, 44)]), "html", null, true);
+                    echo "\">Unsell</a>";
                 } else {
                     echo "<a href=\"";
-                    echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("put_on_market", ["id" => twig_get_attribute($this->env, $this->source, $context["player"], "id", [], "any", false, false, false, 28)]), "html", null, true);
+                    echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("put_on_market", ["id" => twig_get_attribute($this->env, $this->source, $context["player"], "id", [], "any", false, false, false, 44)]), "html", null, true);
                     echo "\">Sell</a>";
+                }
+                echo "</td>
+                                <td>";
+                // line 45
+                if ( !twig_get_attribute($this->env, $this->source, $context["player"], "isOnMarket", [], "any", false, false, false, 45)) {
+                    echo twig_include($this->env, $context, "player/_delete_form.html.twig");
                 }
                 echo "</td>
                             </tr>
                         ";
+                ++$context['loop']['index0'];
+                ++$context['loop']['index'];
+                $context['loop']['first'] = false;
+                if (isset($context['loop']['length'])) {
+                    --$context['loop']['revindex0'];
+                    --$context['loop']['revindex'];
+                    $context['loop']['last'] = 0 === $context['loop']['revindex0'];
+                }
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['player'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 31
+            // line 48
             echo "                    </tbody>
                 </table>
             ";
         }
-        // line 34
+        // line 51
         echo "
         </div>
 
         <div class=\"col-md-4\">
             <h3>New Player</h3>
             ";
-        // line 39
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock((isset($context["playerForm"]) || array_key_exists("playerForm", $context) ? $context["playerForm"] : (function () { throw new RuntimeError('Variable "playerForm" does not exist.', 39, $this->source); })()), 'errors');
+        // line 56
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock((isset($context["playerForm"]) || array_key_exists("playerForm", $context) ? $context["playerForm"] : (function () { throw new RuntimeError('Variable "playerForm" does not exist.', 56, $this->source); })()), 'errors');
         echo "
             ";
-        // line 40
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["playerForm"]) || array_key_exists("playerForm", $context) ? $context["playerForm"] : (function () { throw new RuntimeError('Variable "playerForm" does not exist.', 40, $this->source); })()), 'form_start');
+        // line 57
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["playerForm"]) || array_key_exists("playerForm", $context) ? $context["playerForm"] : (function () { throw new RuntimeError('Variable "playerForm" does not exist.', 57, $this->source); })()), 'form_start');
         echo "
             ";
-        // line 41
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock((isset($context["playerForm"]) || array_key_exists("playerForm", $context) ? $context["playerForm"] : (function () { throw new RuntimeError('Variable "playerForm" does not exist.', 41, $this->source); })()), 'widget');
+        // line 58
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock((isset($context["playerForm"]) || array_key_exists("playerForm", $context) ? $context["playerForm"] : (function () { throw new RuntimeError('Variable "playerForm" does not exist.', 58, $this->source); })()), 'widget');
         echo "
             <button type=\"submit\" class=\"btn btn-primary\">Create Player</button>
             ";
-        // line 43
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["playerForm"]) || array_key_exists("playerForm", $context) ? $context["playerForm"] : (function () { throw new RuntimeError('Variable "playerForm" does not exist.', 43, $this->source); })()), 'form_end');
+        // line 60
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["playerForm"]) || array_key_exists("playerForm", $context) ? $context["playerForm"] : (function () { throw new RuntimeError('Variable "playerForm" does not exist.', 60, $this->source); })()), 'form_end');
         echo "
         </div>
         <div class=\"col-md-4\">
             <h3>Transfer Player</h3>
             ";
-        // line 47
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock((isset($context["transferForm"]) || array_key_exists("transferForm", $context) ? $context["transferForm"] : (function () { throw new RuntimeError('Variable "transferForm" does not exist.', 47, $this->source); })()), 'errors');
+        // line 64
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock((isset($context["transferForm"]) || array_key_exists("transferForm", $context) ? $context["transferForm"] : (function () { throw new RuntimeError('Variable "transferForm" does not exist.', 64, $this->source); })()), 'errors');
         echo "
             ";
-        // line 48
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["transferForm"]) || array_key_exists("transferForm", $context) ? $context["transferForm"] : (function () { throw new RuntimeError('Variable "transferForm" does not exist.', 48, $this->source); })()), 'form_start');
+        // line 65
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["transferForm"]) || array_key_exists("transferForm", $context) ? $context["transferForm"] : (function () { throw new RuntimeError('Variable "transferForm" does not exist.', 65, $this->source); })()), 'form_start');
         echo "
             ";
-        // line 49
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock((isset($context["transferForm"]) || array_key_exists("transferForm", $context) ? $context["transferForm"] : (function () { throw new RuntimeError('Variable "transferForm" does not exist.', 49, $this->source); })()), 'widget');
+        // line 66
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock((isset($context["transferForm"]) || array_key_exists("transferForm", $context) ? $context["transferForm"] : (function () { throw new RuntimeError('Variable "transferForm" does not exist.', 66, $this->source); })()), 'widget');
         echo "
             <button type=\"submit\" class=\"btn btn-primary\">Transfer Player</button>
             ";
-        // line 51
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["transferForm"]) || array_key_exists("transferForm", $context) ? $context["transferForm"] : (function () { throw new RuntimeError('Variable "transferForm" does not exist.', 51, $this->source); })()), 'form_end');
+        // line 68
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["transferForm"]) || array_key_exists("transferForm", $context) ? $context["transferForm"] : (function () { throw new RuntimeError('Variable "transferForm" does not exist.', 68, $this->source); })()), 'form_end');
         echo "
         </div>
     </div>
-    <div class=\"row\">
-        <h1>";
-        // line 55
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["team"]) || array_key_exists("team", $context) ? $context["team"] : (function () { throw new RuntimeError('Variable "team" does not exist.', 55, $this->source); })()), "name", [], "any", false, false, false, 55), "html", null, true);
-        echo " Details</h1>
-        <a href=\"";
-        // line 56
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_team_index");
-        echo "\">back to list</a>
-        <a href=\"";
-        // line 57
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_team_edit", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["team"]) || array_key_exists("team", $context) ? $context["team"] : (function () { throw new RuntimeError('Variable "team" does not exist.', 57, $this->source); })()), "id", [], "any", false, false, false, 57)]), "html", null, true);
-        echo "\">edit</a>
-        ";
-        // line 58
-        echo twig_include($this->env, $context, "team/_delete_form.html.twig");
-        echo "
-    </div>
+    
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -234,7 +276,7 @@ class __TwigTemplate_68aa5308bd4b534d8b1b1e0d50fc01ae extends Template
      */
     public function getDebugInfo()
     {
-        return array (  204 => 58,  200 => 57,  196 => 56,  192 => 55,  185 => 51,  180 => 49,  176 => 48,  172 => 47,  165 => 43,  160 => 41,  156 => 40,  152 => 39,  145 => 34,  140 => 31,  125 => 28,  121 => 27,  117 => 26,  114 => 25,  110 => 24,  100 => 16,  96 => 14,  94 => 13,  88 => 9,  78 => 8,  59 => 6,  36 => 4,);
+        return array (  244 => 68,  239 => 66,  235 => 65,  231 => 64,  224 => 60,  219 => 58,  215 => 57,  211 => 56,  204 => 51,  199 => 48,  180 => 45,  168 => 44,  164 => 43,  160 => 42,  157 => 41,  140 => 40,  129 => 31,  125 => 29,  123 => 28,  113 => 21,  106 => 17,  100 => 14,  95 => 12,  88 => 9,  78 => 8,  59 => 6,  36 => 4,);
     }
 
     public function getSourceContext()
@@ -247,7 +289,22 @@ class __TwigTemplate_68aa5308bd4b534d8b1b1e0d50fc01ae extends Template
 {% block title %}Team Details{% endblock %}
 
 {% block body %}
-    
+    <h1>{{ team.name }}</h1>
+    <div class=\"row\">
+        <div class=\"col-md-9 d-flex\">
+            <div class=\"btn-container\"><a class=\"btn\" href=\"{{ path('app_team_index') }}\">back to list</a></div>
+            <div class=\"btn-container\">
+                <a class=\"btn\" href=\"{{ path('app_team_edit', {'id': team.id}) }}\">edit</a>
+            </div>
+            <div class=\"btn-container\">
+                {{ include('team/_delete_form.html.twig') }}
+            </div>
+        </div>
+        <div class=\"col-md-3\">
+            Balance: {{ team.moneyBalance }}
+        </div>
+        
+    </div>
     <div class=\"row\">
         <div class=\"col-md-4\">
             <h3>Players</h3>
@@ -259,6 +316,7 @@ class __TwigTemplate_68aa5308bd4b534d8b1b1e0d50fc01ae extends Template
                         <tr>
                             <th>Name</th>
                             <th>Surname</th>
+                            <th colspan=\"2\">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -266,7 +324,8 @@ class __TwigTemplate_68aa5308bd4b534d8b1b1e0d50fc01ae extends Template
                             <tr>
                                 <td>{{ player.name }}</td>
                                 <td>{{ player.surname }}</td>
-                                <td>{% if player.isOnMarket %}On Market{% else %}<a href=\"{{ path('put_on_market', {'id': player.id}) }}\">Sell</a>{% endif %}</td>
+                                <td>{% if player.isOnMarket %}<a href=\"{{ path('retire_from_market', {'id': player.id}) }}\">Unsell</a>{% else %}<a href=\"{{ path('put_on_market', {'id': player.id}) }}\">Sell</a>{% endif %}</td>
+                                <td>{% if not player.isOnMarket %}{{ include('player/_delete_form.html.twig') }}{% endif %}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -292,12 +351,7 @@ class __TwigTemplate_68aa5308bd4b534d8b1b1e0d50fc01ae extends Template
             {{ form_end(transferForm) }}
         </div>
     </div>
-    <div class=\"row\">
-        <h1>{{ team.name }} Details</h1>
-        <a href=\"{{ path('app_team_index') }}\">back to list</a>
-        <a href=\"{{ path('app_team_edit', {'id': team.id}) }}\">edit</a>
-        {{ include('team/_delete_form.html.twig') }}
-    </div>
+    
 {% endblock %}
 
 ", "team/show.html.twig", "/var/www/html/templates/team/show.html.twig");

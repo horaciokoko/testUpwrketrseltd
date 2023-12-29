@@ -12,9 +12,8 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Surname</th>
-                        <th>Team</th>
+                        <th>Player</th>
+                        <th>Seller</th>
                         <th>Sell price</th>
                         <th>Action</th>
                     </tr>
@@ -27,9 +26,8 @@
                     {% else %}
                         {% for player in players %}
                             <tr>
-                                <td>{{ player.name }}</td>
-                                <td>{{ player.surname }}</td>
-                                <td>{{ player.team.name }}</td>
+                                <td>{{ player.name }} {{ player.surname }}</td>
+                                <td><a href="{{ path('team_show', {'id': player.team.id}) }}" >{{ player.team.name }}</a></td>
                                 <td>{{ player.marketPrice }}</td>
                                 <td>
                                     <a href="{{ path('buy_player', {'id': player.id}) }}" class="btn btn-primary">Buy</a>
@@ -42,16 +40,16 @@
             <div class="col-md-12 mb-12)">{{ knp_pagination_render(players) }}</div>
         </div>
         <div class="row">
-            <h2>Liste des Transactions</h2>
+            <h2>Transaction list</h2>
 
             <table class="table">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Joueur</th>
-                        <th>Équipe Vendeuse</th>
-                        <th>Équipe Acheteuse</th>
-                        <th>Montant</th>
+                        <th>Player</th>
+                        <th>Selling team</th>
+                        <th>Buying team</th>
+                        <th>Amount</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,8 +62,8 @@
                             <tr>
                                 <td>{{ transaction.id }}</td>
                                 <td>{{ transaction.player.name }} {{ transaction.player.surname }}</td>
-                                <td>{{ transaction.sellerTeam.name }}</td>
-                                <td>{{ transaction.buyerTeam.name }}</td>
+                                <td><a href="{{ path('team_show', {'id': transaction.sellerTeam.id}) }}" >{{ transaction.sellerTeam.name }}</a></td>
+                                <td><a href="{{ path('team_show', {'id': transaction.buyerTeam.id}) }}" >{{ transaction.buyerTeam.name }}</a></td>
                                 <td>{{ transaction.amount }}</td>
                             </tr>
                         {% endfor %}

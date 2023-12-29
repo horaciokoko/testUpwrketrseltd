@@ -86,32 +86,37 @@ class __TwigTemplate_57d30f0a694d83295942288fbb8a211a extends Template
 
         // line 8
         echo "    <h1>Teams</h1>
-
+    <div class=\"row\">
+        <a href=\"";
+        // line 10
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_team_new");
+        echo "\">Create new</a>
+    </div>
     <div class=\"row\">
         ";
-        // line 11
+        // line 13
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["teams"]) || array_key_exists("teams", $context) ? $context["teams"] : (function () { throw new RuntimeError('Variable "teams" does not exist.', 11, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["teams"]) || array_key_exists("teams", $context) ? $context["teams"] : (function () { throw new RuntimeError('Variable "teams" does not exist.', 13, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["team"]) {
-            // line 12
+            // line 14
             echo "            <div class=\"col-md-4 mb-4\">
                 <div class=\"card\">
                     <div class=\"card-body\">
                         <h5 class=\"card-title\">";
-            // line 15
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["team"], "name", [], "any", false, false, false, 15), "html", null, true);
+            // line 17
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["team"], "name", [], "any", false, false, false, 17), "html", null, true);
             echo "</h5>
                         <p class=\"card-text\">Country: ";
-            // line 16
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["team"], "country", [], "any", false, false, false, 16), "html", null, true);
+            // line 18
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["team"], "country", [], "any", false, false, false, 18), "html", null, true);
             echo "</p>
                         <p class=\"card-text\">Balance: ";
-            // line 17
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["team"], "moneyBalance", [], "any", false, false, false, 17), "html", null, true);
+            // line 19
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["team"], "moneyBalance", [], "any", false, false, false, 19), "html", null, true);
             echo "</p>
                         <a href=\"";
-            // line 18
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("team_show", ["id" => twig_get_attribute($this->env, $this->source, $context["team"], "id", [], "any", false, false, false, 18)]), "html", null, true);
+            // line 20
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("team_show", ["id" => twig_get_attribute($this->env, $this->source, $context["team"], "id", [], "any", false, false, false, 20)]), "html", null, true);
             echo "\" class=\"btn btn-primary\">View Details</a>
                     </div>
                 </div>
@@ -121,15 +126,11 @@ class __TwigTemplate_57d30f0a694d83295942288fbb8a211a extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['team'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 23
+        // line 25
         echo "        <div class=\"col-md-12 mb-12)\">";
-        echo $this->env->getRuntime('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationRuntime')->render($this->env, (isset($context["teams"]) || array_key_exists("teams", $context) ? $context["teams"] : (function () { throw new RuntimeError('Variable "teams" does not exist.', 23, $this->source); })()));
+        echo $this->env->getRuntime('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationRuntime')->render($this->env, (isset($context["teams"]) || array_key_exists("teams", $context) ? $context["teams"] : (function () { throw new RuntimeError('Variable "teams" does not exist.', 25, $this->source); })()));
         echo "</div>
     </div>
-    <a href=\"";
-        // line 25
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_team_new");
-        echo "\">Create new</a>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -160,7 +161,7 @@ class __TwigTemplate_57d30f0a694d83295942288fbb8a211a extends Template
      */
     public function getDebugInfo()
     {
-        return array (  131 => 25,  125 => 23,  114 => 18,  110 => 17,  106 => 16,  102 => 15,  97 => 12,  93 => 11,  88 => 8,  78 => 7,  59 => 5,  36 => 3,);
+        return array (  130 => 25,  119 => 20,  115 => 19,  111 => 18,  107 => 17,  102 => 14,  98 => 13,  92 => 10,  88 => 8,  78 => 7,  59 => 5,  36 => 3,);
     }
 
     public function getSourceContext()
@@ -173,7 +174,9 @@ class __TwigTemplate_57d30f0a694d83295942288fbb8a211a extends Template
 
 {% block body %}
     <h1>Teams</h1>
-
+    <div class=\"row\">
+        <a href=\"{{ path('app_team_new') }}\">Create new</a>
+    </div>
     <div class=\"row\">
         {% for team in teams %}
             <div class=\"col-md-4 mb-4\">
@@ -189,7 +192,6 @@ class __TwigTemplate_57d30f0a694d83295942288fbb8a211a extends Template
         {% endfor %}
         <div class=\"col-md-12 mb-12)\">{{ knp_pagination_render(teams) }}</div>
     </div>
-    <a href=\"{{ path('app_team_new') }}\">Create new</a>
 {% endblock %}
 ", "team/index.html.twig", "/var/www/html/templates/team/index.html.twig");
     }

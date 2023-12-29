@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Team;
+use App\Entity\Transaction;
 use App\Form\PlayerType;
 use App\Form\TeamType;
 use App\Form\TransferPlayerType;
@@ -10,6 +11,7 @@ use App\Repository\PlayerRepository;
 use App\Repository\TeamRepository;
 use App\Service\PlayerCreationService;
 use App\Service\TransferService;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,12 +25,13 @@ class TeamController extends AbstractController
     #[Route('/', name: 'app_team_index', methods: ['GET'])]
     public function index(TeamRepository $teamRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $query = $teamRepository->createQueryBuilder('t')->getQuery();
-
+        $teams  = $teamRepository->findAll();
+        krsort($teams);
         $teams = $paginator->paginate(
-            $query, // Requête Doctrine
+            $teams, // Requête Doctrine
             $request->query->getInt('page', 1), // Numéro de page
-            6 // Nombre d'éléments par page
+            6, // Nombre d'éléments par page
+            ['pageParameterName' => 'page', 'sortFieldParameterName' => 'id']
         );
         return $this->render('team/index.html.twig', [
             'teams' => $teams
@@ -45,7 +48,7 @@ class TeamController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($team);
             $entityManager->flush();
-            $this->addFlash('success', "L'équipe " . $team->getName() . " a été créée avec succès");
+            $this->addFlash('success', "the team " . $team->getName() . " was successfully created");
             return $this->redirectToRoute('app_team_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -56,7 +59,7 @@ class TeamController extends AbstractController
     }
 
     #[Route('/{id}', name: 'team_show', methods: ['GET', 'POST'])]
-    public function show(Team $team, Request $request, PlayerCreationService $playerCreationService, TransferService $transferService, TeamRepository $teamRepository, PlayerRepository $playerRepository): Response
+    public function show(Team $team, Request $request, PlayerCreationService $playerCreationService, TransferService $transferService, TeamRepository $teamRepository, PlayerRepository $playerRepository, EntityManagerInterface $entityManager): Response
     {
         // dd($request->request->all());
 
@@ -77,13 +80,27 @@ class TeamController extends AbstractController
             $targetTeam = $teamRepository->find($transfer['targetTeam']);
             $player     = $playerRepository->find($transfer['player']);
             if ($targetTeam->getMoneyBalance() >= $transfer['amount']) {
+                $transaction = new Transaction();
+                $transaction->setPlayer($player);
+                $currentTeam = $player->getTeam();
+                $transaction->setSellerTeam($currentTeam);
                 // Use the TransferService to perform the player transfer
-                $transferService->transferPlayer($player, $targetTeam, $transfer['amount']);
-                $this->addFlash('success', "Le joueur " . $player->getName() . " a été transféré à " . $targetTeam->getName());
+                $transaction->setBuyerTeam($targetTeam);
+                $transaction->setAmount($transactionAmount = $transfer['amount']);
+
+                $entityManager->persist($transaction);
+                $entityManager->flush();
+                $transferService->transferPlayer(
+                    $player,
+                    $targetTeam,
+                    $transactionAmount
+                );
+                // $transferService->transferPlayer($player, $targetTeam, $transfer['amount']);
+                $this->addFlash('success', "The player " . $player->getName() . " was transfered to " . $targetTeam->getName());
                 return $this->redirectToRoute('team_show', ['id' => $team->getId()]);
             }
 
-            $this->addFlash('error', "L'équipe " . $targetTeam->getName() . " n'a pas assez d'argent pour faire ce transfert");
+            $this->addFlash('error', "the team " . $targetTeam->getName() . " doesn't have enougth money to buy the player");
         }
 
         $playerForm = $this->createForm(PlayerType::class);
@@ -96,9 +113,9 @@ class TeamController extends AbstractController
             $data                       = $request->request->all();
             $data['player']['team']     = $team;
             $data['player']['onMarket'] = false;
-            // Utilise le service pour créer le joueur
+            // Utilise le service pour créer The player
             $player = $playerCreationService->createPlayer($data['player']);
-            $this->addFlash('success', "Le joueur " . $player->getName() . " a été créé avec succès");
+            $this->addFlash('success', "The player " . $player->getName() . " was created successfully");
             return $this->redirectToRoute('team_show', ['id' => $team->getId()]);
         }
         return $this->render('team/show.html.twig', [
@@ -117,7 +134,7 @@ class TeamController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-            $this->addFlash('success', "L'équipe " . $team->getName() . " a été modifiée avec succès");
+            $this->addFlash('success', "the team " . $team->getName() . " was updated successfully");
             return $this->redirectToRoute('app_team_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -127,13 +144,21 @@ class TeamController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_team_delete', methods: ['POST'])]
+    #[Route('/{id}/delete', name: 'app_team_delete', methods: ['POST'])]
     public function delete(Request $request, Team $team, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $team->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($team);
-            $entityManager->flush();
-            $this->addFlash('success', "L'équipe " . $team->getName() . " a été supprimée avec succès");
+            if ($team->getPlayers()->count() > 0) {
+                $this->addFlash('error', "The team is has players associated. Can't delete");
+                return $this->redirectToRoute('team_show', ['id' => $team->getId()], Response::HTTP_SEE_OTHER);
+            }
+            try {
+                $entityManager->remove($team);
+                $entityManager->flush();
+                $this->addFlash('success', "the team " . $team->getName() . " was deleted successfully");
+            } catch (\Throwable $th) {
+                $this->addFlash('error', $th->getMessage());
+            }
         }
 
         return $this->redirectToRoute('app_team_index', [], Response::HTTP_SEE_OTHER);

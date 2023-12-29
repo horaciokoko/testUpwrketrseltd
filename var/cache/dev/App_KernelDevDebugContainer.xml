@@ -441,7 +441,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.36InT2e"/>
+      <argument type="service" id=".service_locator.XojcVLs"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3375,7 +3375,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.36InT2e"/>
+      <argument type="service" id=".service_locator.XojcVLs"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -7554,12 +7554,13 @@
         <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
-    <service id=".service_locator.wVXjoVx" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.Dz_I9HZ" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
         <argument key="playerCreationService" type="service_closure" id="App\Service\PlayerCreationService"/>
         <argument key="playerRepository" type="service_closure" id="App\Repository\PlayerRepository"/>
-        <argument key="team" type="service_closure" id=".errored..service_locator.wVXjoVx.App\Entity\Team"/>
+        <argument key="team" type="service_closure" id=".errored..service_locator.Dz_I9HZ.App\Entity\Team"/>
         <argument key="teamRepository" type="service_closure" id="App\Repository\TeamRepository"/>
         <argument key="transferService" type="service_closure" id="App\Service\TransferService"/>
       </argument>
@@ -7571,18 +7572,21 @@
         <argument key="team" type="service_closure" id=".errored..service_locator.hw72IKE.App\Entity\Team"/>
       </argument>
     </service>
-    <service id=".service_locator.36InT2e" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.XojcVLs" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\MarketController::buyPlayer" type="service_closure" id=".service_locator.J4kCUgW"/>
         <argument key="App\Controller\MarketController::market" type="service_closure" id=".service_locator.S_gMG9C"/>
         <argument key="App\Controller\MarketController::putOnMarket" type="service_closure" id=".service_locator.3llMoIQ"/>
+        <argument key="App\Controller\PlayerController::delete" type="service_closure" id=".service_locator.3llMoIQ"/>
+        <argument key="App\Controller\PlayerController::edit" type="service_closure" id=".service_locator.3llMoIQ"/>
         <argument key="App\Controller\PlayerController::putOnMarket" type="service_closure" id=".service_locator.3llMoIQ"/>
+        <argument key="App\Controller\PlayerController::retireFromMarket" type="service_closure" id=".service_locator.3llMoIQ"/>
         <argument key="App\Controller\TeamController::delete" type="service_closure" id=".service_locator.hw72IKE"/>
         <argument key="App\Controller\TeamController::edit" type="service_closure" id=".service_locator.hw72IKE"/>
         <argument key="App\Controller\TeamController::index" type="service_closure" id=".service_locator.2XuSl_A"/>
         <argument key="App\Controller\TeamController::new" type="service_closure" id=".service_locator.CsMkqUa"/>
-        <argument key="App\Controller\TeamController::show" type="service_closure" id=".service_locator.wVXjoVx"/>
+        <argument key="App\Controller\TeamController::show" type="service_closure" id=".service_locator.Dz_I9HZ"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
@@ -7590,12 +7594,15 @@
         <argument key="App\Controller\MarketController:buyPlayer" type="service_closure" id=".service_locator.J4kCUgW"/>
         <argument key="App\Controller\MarketController:market" type="service_closure" id=".service_locator.S_gMG9C"/>
         <argument key="App\Controller\MarketController:putOnMarket" type="service_closure" id=".service_locator.3llMoIQ"/>
+        <argument key="App\Controller\PlayerController:delete" type="service_closure" id=".service_locator.3llMoIQ"/>
+        <argument key="App\Controller\PlayerController:edit" type="service_closure" id=".service_locator.3llMoIQ"/>
         <argument key="App\Controller\PlayerController:putOnMarket" type="service_closure" id=".service_locator.3llMoIQ"/>
+        <argument key="App\Controller\PlayerController:retireFromMarket" type="service_closure" id=".service_locator.3llMoIQ"/>
         <argument key="App\Controller\TeamController:delete" type="service_closure" id=".service_locator.hw72IKE"/>
         <argument key="App\Controller\TeamController:edit" type="service_closure" id=".service_locator.hw72IKE"/>
         <argument key="App\Controller\TeamController:index" type="service_closure" id=".service_locator.2XuSl_A"/>
         <argument key="App\Controller\TeamController:new" type="service_closure" id=".service_locator.CsMkqUa"/>
-        <argument key="App\Controller\TeamController:show" type="service_closure" id=".service_locator.wVXjoVx"/>
+        <argument key="App\Controller\TeamController:show" type="service_closure" id=".service_locator.Dz_I9HZ"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
       </argument>
@@ -8594,8 +8601,8 @@
     <service id=".errored..service_locator.3llMoIQ.App\Entity\Player" class="App\Entity\Player">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.3llMoIQ&quot;: it needs an instance of &quot;App\Entity\Player&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
     </service>
-    <service id=".errored..service_locator.wVXjoVx.App\Entity\Team" class="App\Entity\Team">
-      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.wVXjoVx&quot;: it needs an instance of &quot;App\Entity\Team&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
+    <service id=".errored..service_locator.Dz_I9HZ.App\Entity\Team" class="App\Entity\Team">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.Dz_I9HZ&quot;: it needs an instance of &quot;App\Entity\Team&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
     </service>
     <service id=".errored..service_locator.hw72IKE.App\Entity\Team" class="App\Entity\Team">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.hw72IKE&quot;: it needs an instance of &quot;App\Entity\Team&quot; but this type has been excluded in &quot;config/services.yaml&quot;."/>
@@ -9727,7 +9734,7 @@
     <service id="Knp\Component\Pager\ArgumentAccess\ArgumentAccessInterface" alias="Knp\Component\Pager\ArgumentAccess\RequestArgumentAccess"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.bJ.4HC5" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.36InT2e"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.XojcVLs"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -9775,7 +9782,7 @@
     <service id=".service_locator.deP1hPt" alias=".service_locator.3llMoIQ"/>
     <service id=".service_locator.A6eupyp" alias=".service_locator.2XuSl_A"/>
     <service id=".service_locator.9e2t_lq" alias=".service_locator.CsMkqUa"/>
-    <service id=".service_locator.y9fK8Oc" alias=".service_locator.wVXjoVx"/>
+    <service id=".service_locator.5zdXFl3" alias=".service_locator.Dz_I9HZ"/>
     <service id=".service_locator.vQvqjht" alias=".service_locator.hw72IKE"/>
     <service id=".service_locator.Q1z.f9O" alias=".service_locator.jUv.zyj"/>
   </services>

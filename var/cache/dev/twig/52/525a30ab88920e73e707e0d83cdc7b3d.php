@@ -56,7 +56,10 @@ class __TwigTemplate_304721ad291537e915d907205cfd7c9b extends Template
         echo "</title>
 
     <!-- Bootstrap CSS -->
-    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">
+    <link rel=\"stylesheet\" href=\"";
+        // line 11
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("css/bootstrap.min.css"), "html", null, true);
+        echo "\">
     <link rel=\"stylesheet\" href=\"";
         // line 12
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("css/styles.css"), "html", null, true);
@@ -177,9 +180,18 @@ class __TwigTemplate_304721ad291537e915d907205cfd7c9b extends Template
         echo "    </div>
 
     <!-- Bootstrap JS and Popper.js -->
-    <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\"></script>
-    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js\" integrity=\"sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1\" crossorigin=\"anonymous\"></script>
-    <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\" integrity=\"sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM\" crossorigin=\"anonymous\"></script>
+    <script src=\"";
+        // line 59
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("js/jquery-3.3.1.slim.min.js"), "html", null, true);
+        echo "\" ></script>
+    <script src=\"";
+        // line 60
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("js/popper.min.js"), "html", null, true);
+        echo "\" ></script>
+    <script src=\"";
+        // line 61
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("js/bootstrap.min.js"), "html", null, true);
+        echo "\" ></script>
 
     <!-- Optional: Add your custom scripts here -->
 
@@ -292,7 +304,7 @@ class __TwigTemplate_304721ad291537e915d907205cfd7c9b extends Template
      */
     public function getDebugInfo()
     {
-        return array (  257 => 65,  239 => 55,  221 => 15,  202 => 8,  190 => 66,  188 => 65,  177 => 56,  175 => 55,  170 => 52,  161 => 49,  158 => 48,  154 => 47,  151 => 46,  142 => 43,  139 => 42,  135 => 41,  131 => 39,  120 => 35,  112 => 34,  108 => 32,  97 => 28,  89 => 27,  85 => 25,  83 => 24,  75 => 19,  70 => 16,  68 => 15,  62 => 12,  55 => 8,  47 => 2,);
+        return array (  269 => 65,  251 => 55,  233 => 15,  214 => 8,  202 => 66,  200 => 65,  193 => 61,  189 => 60,  185 => 59,  180 => 56,  178 => 55,  173 => 52,  164 => 49,  161 => 48,  157 => 47,  154 => 46,  145 => 43,  142 => 42,  138 => 41,  134 => 39,  123 => 35,  115 => 34,  111 => 32,  100 => 28,  92 => 27,  88 => 25,  86 => 24,  78 => 19,  73 => 16,  71 => 15,  65 => 12,  61 => 11,  55 => 8,  47 => 2,);
     }
 
     public function getSourceContext()
@@ -307,7 +319,7 @@ class __TwigTemplate_304721ad291537e915d907205cfd7c9b extends Template
     <title>{% block title %}Football App{% endblock %}</title>
 
     <!-- Bootstrap CSS -->
-    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">
+    <link rel=\"stylesheet\" href=\"{{ asset('css/bootstrap.min.css') }}\">
     <link rel=\"stylesheet\" href=\"{{ asset('css/styles.css') }}\">
     <!-- Optional: Add your custom stylesheets here -->
 
@@ -355,9 +367,9 @@ class __TwigTemplate_304721ad291537e915d907205cfd7c9b extends Template
     </div>
 
     <!-- Bootstrap JS and Popper.js -->
-    <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\"></script>
-    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js\" integrity=\"sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1\" crossorigin=\"anonymous\"></script>
-    <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\" integrity=\"sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM\" crossorigin=\"anonymous\"></script>
+    <script src=\"{{ asset('js/jquery-3.3.1.slim.min.js')}}\" ></script>
+    <script src=\"{{ asset('js/popper.min.js')}}\" ></script>
+    <script src=\"{{ asset('js/bootstrap.min.js')}}\" ></script>
 
     <!-- Optional: Add your custom scripts here -->
 

@@ -40,10 +40,15 @@ return [
                 .')'
                 .'|/buy/([^/]++)(*:215)'
                 .'|/put\\-on\\-market/([^/]++)(*:248)'
+                .'|/retire\\-from\\-market/([^/]++)(*:286)'
+                .'|/delete\\-player/([^/]++)(*:318)'
+                .'|/edit\\-player/([^/]++)(*:348)'
                 .'|/team/([^/]++)(?'
-                    .'|(*:273)'
-                    .'|/edit(*:286)'
-                    .'|(*:294)'
+                    .'|(*:373)'
+                    .'|/(?'
+                        .'|edit(*:389)'
+                        .'|delete(*:403)'
+                    .')'
                 .')'
             .')/?$}sDu',
     ],
@@ -58,10 +63,13 @@ return [
         191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         215 => [[['_route' => 'buy_player', '_controller' => 'App\\Controller\\MarketController::buyPlayer'], ['id'], null, null, false, true, null]],
         248 => [[['_route' => 'put_on_market', '_controller' => 'App\\Controller\\PlayerController::putOnMarket'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
-        273 => [[['_route' => 'team_show', '_controller' => 'App\\Controller\\TeamController::show'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
-        286 => [[['_route' => 'app_team_edit', '_controller' => 'App\\Controller\\TeamController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        294 => [
-            [['_route' => 'app_team_delete', '_controller' => 'App\\Controller\\TeamController::delete'], ['id'], ['POST' => 0], null, false, true, null],
+        286 => [[['_route' => 'retire_from_market', '_controller' => 'App\\Controller\\PlayerController::retireFromMarket'], ['id'], ['GET' => 0], null, false, true, null]],
+        318 => [[['_route' => 'delete_player', '_controller' => 'App\\Controller\\PlayerController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        348 => [[['_route' => 'edit_player', '_controller' => 'App\\Controller\\PlayerController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        373 => [[['_route' => 'team_show', '_controller' => 'App\\Controller\\TeamController::show'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        389 => [[['_route' => 'app_team_edit', '_controller' => 'App\\Controller\\TeamController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        403 => [
+            [['_route' => 'app_team_delete', '_controller' => 'App\\Controller\\TeamController::delete'], ['id'], ['POST' => 0], null, false, false, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

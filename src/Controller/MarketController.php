@@ -21,21 +21,21 @@ class MarketController extends AbstractController
     #[Route('/', name: 'market')]
     public function market(PlayerRepository $playerRepository, TransactionRepository $transactionRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $players = $playerRepository->findBy(['onMarket' => true]);
-        $transactions = $transactionRepository->findAll();
-
+        $players        = $playerRepository->findBy(['onMarket' => true]);
+        $transactions   = $transactionRepository->findAll();
+        krsort($transactions);
         $players = $paginator->paginate(
             $players, // Requête Doctrine
             $request->query->getInt('page_players', 1), // Numéro de page
-            1, // Nombre d'éléments par page,
-            ['pageParameterName' => 'page_players']
+            5, // Nombre d'éléments par page,
+            ['pageParameterName' => 'page_players', 'sortFieldParameterName' => 'id']
         );
 
         $transactions = $paginator->paginate(
             $transactions, // Requête Doctrine
             $request->query->getInt('page_transaction', 1), // Numéro de page
-            1, // Nombre d'éléments par page
-            ['pageParameterName' => 'page_transaction']
+            4, // Nombre d'éléments par page
+            ['pageParameterName' => 'page_transaction', 'sortFieldParameterName' => 'id']
         );
         return $this->render('market/index.html.twig', [
             'players'       => $players,
@@ -60,9 +60,14 @@ class MarketController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // Perform the buying logic, update player ownership, etc.
             // You may want to add more validation and error handling in a real application
-            $buyerTeam = $form->get('buyerTeam')->getData();
+            $buyerTeam  = $form->get('buyerTeam')->getData();
+            $amount     = $form->get('amount')->getData();
+            if ($buyerTeam->getMoneyBalance() < $amount) {
+                $this->addFlash('error', "The team " . $buyerTeam->getName() . " doesn't have enough money to buy this player.");
+                return $this->redirectToRoute('buy_player', ['id' => $player->getId()]);
+            }
             $transaction->setBuyerTeam($buyerTeam);
-            $transaction->setAmount($transactionAmount = $form->get('amount')->getData());
+            $transaction->setAmount($transactionAmount = $amount);
 
             $entityManager->persist($transaction);
             $entityManager->flush();

@@ -34,7 +34,7 @@ class PlayerCreationService
         $player->setOnMarket($data['onMarket']);
         $player->setMarketPrice(0);
 
-        // Persiste le joueur en base de données
+        // Persiste The player en base de données
         $this->entityManager->persist($player);
         $this->entityManager->flush();
 

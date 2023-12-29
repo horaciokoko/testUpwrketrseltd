@@ -86,21 +86,30 @@ class __TwigTemplate_82e30b434f19719ccaa9365f97092b4c extends Template
 
         // line 6
         echo "    <h1>Edit Team</h1>
-
-    ";
-        // line 8
-        echo twig_include($this->env, $context, "team/_form.html.twig", ["button_label" => "Update"]);
-        echo "
-
-    <a href=\"";
-        // line 10
+    <div class=\"d-flex row\">
+        <div class=\"btn-container\">
+            <a class=\"btn\" href=\"";
+        // line 9
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_team_index");
         echo "\">back to list</a>
+        </div>
 
-    ";
-        // line 12
+        <div class=\"btn-container\">
+            ";
+        // line 13
         echo twig_include($this->env, $context, "team/_delete_form.html.twig");
         echo "
+        </div>
+    </div>
+    <div>
+        <div>
+            ";
+        // line 18
+        echo twig_include($this->env, $context, "team/_form.html.twig", ["button_label" => "Update"]);
+        echo "
+        </div>
+        
+    </div> 
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -131,7 +140,7 @@ class __TwigTemplate_82e30b434f19719ccaa9365f97092b4c extends Template
      */
     public function getDebugInfo()
     {
-        return array (  102 => 12,  97 => 10,  92 => 8,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  108 => 18,  100 => 13,  93 => 9,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -142,12 +151,21 @@ class __TwigTemplate_82e30b434f19719ccaa9365f97092b4c extends Template
 
 {% block body %}
     <h1>Edit Team</h1>
+    <div class=\"d-flex row\">
+        <div class=\"btn-container\">
+            <a class=\"btn\" href=\"{{ path('app_team_index') }}\">back to list</a>
+        </div>
 
-    {{ include('team/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href=\"{{ path('app_team_index') }}\">back to list</a>
-
-    {{ include('team/_delete_form.html.twig') }}
+        <div class=\"btn-container\">
+            {{ include('team/_delete_form.html.twig') }}
+        </div>
+    </div>
+    <div>
+        <div>
+            {{ include('team/_form.html.twig', {'button_label': 'Update'}) }}
+        </div>
+        
+    </div> 
 {% endblock %}
 ", "team/edit.html.twig", "/var/www/html/templates/team/edit.html.twig");
     }

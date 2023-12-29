@@ -6,7 +6,9 @@
 
 {% block body %}
     <h1>Teams</h1>
-
+    <div class="row">
+        <a href="{{ path('app_team_new') }}">Create new</a>
+    </div>
     <div class="row">
         {% for team in teams %}
             <div class="col-md-4 mb-4">
@@ -22,5 +24,4 @@
         {% endfor %}
         <div class="col-md-12 mb-12)">{{ knp_pagination_render(teams) }}</div>
     </div>
-    <a href="{{ path('app_team_new') }}">Create new</a>
 {% endblock %}

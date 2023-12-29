@@ -6,7 +6,22 @@
 {% block title %}Team Details{% endblock %}
 
 {% block body %}
-    
+    <h1>{{ team.name }}</h1>
+    <div class="row">
+        <div class="col-md-9 d-flex">
+            <div class="btn-container"><a class="btn" href="{{ path('app_team_index') }}">back to list</a></div>
+            <div class="btn-container">
+                <a class="btn" href="{{ path('app_team_edit', {'id': team.id}) }}">edit</a>
+            </div>
+            <div class="btn-container">
+                {{ include('team/_delete_form.html.twig') }}
+            </div>
+        </div>
+        <div class="col-md-3">
+            Balance: {{ team.moneyBalance }}
+        </div>
+        
+    </div>
     <div class="row">
         <div class="col-md-4">
             <h3>Players</h3>
@@ -18,6 +33,7 @@
                         <tr>
                             <th>Name</th>
                             <th>Surname</th>
+                            <th colspan="2">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,7 +41,8 @@
                             <tr>
                                 <td>{{ player.name }}</td>
                                 <td>{{ player.surname }}</td>
-                                <td>{% if player.isOnMarket %}On Market{% else %}<a href="{{ path('put_on_market', {'id': player.id}) }}">Sell</a>{% endif %}</td>
+                                <td>{% if player.isOnMarket %}<a href="{{ path('retire_from_market', {'id': player.id}) }}">Unsell</a>{% else %}<a href="{{ path('put_on_market', {'id': player.id}) }}">Sell</a>{% endif %}</td>
+                                <td>{% if not player.isOnMarket %}{{ include('player/_delete_form.html.twig') }}{% endif %}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -51,11 +68,6 @@
             {{ form_end(transferForm) }}
         </div>
     </div>
-    <div class="row">
-        <h1>{{ team.name }} Details</h1>
-        <a href="{{ path('app_team_index') }}">back to list</a>
-        <a href="{{ path('app_team_edit', {'id': team.id}) }}">edit</a>
-        {{ include('team/_delete_form.html.twig') }}
-    </div>
+    
 {% endblock %}
 
